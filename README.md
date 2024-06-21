@@ -11,6 +11,8 @@ Game #1-a:
 
 **Note**: I'll be making my own assets using [Krita](https://krita.org/) for the graphics and [beepbox](https://www.beepbox.co) for the sounds / music.
 
+You can download the Crumpled Paper texture for the ball from [kues1 on Freepik)](https://www.freepik.com/free-photo/white-paper-texture_1012237.htm#query=crumpled%20paper%20texture&position=0&from_view=keyword&track=ais_user&uuid=cab41ee8-67a2-4aa8-8a60-f050b6fed8a4")
+
 # Done:
 
 **Goals**:
