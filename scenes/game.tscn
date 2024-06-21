@@ -1,14 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://ce33ikihg5g1o"]
+[gd_scene load_steps=9 format=3 uid="uid://ce33ikihg5g1o"]
 
 [ext_resource type="Texture2D" uid="uid://ccga024x5aqew" path="res://assets/background.png" id="1_jcfli"]
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_rjqji"]
 [ext_resource type="Texture2D" uid="uid://bj443805vkc0n" path="res://assets/net.png" id="2_n340q"]
 [ext_resource type="PackedScene" uid="uid://d16bpf0ggcabl" path="res://scenes/players/player.tscn" id="3_neypx"]
 [ext_resource type="PackedScene" uid="uid://bejvlcb5574ac" path="res://scenes/objects/wall.tscn" id="4_bv7m7"]
+[ext_resource type="PackedScene" uid="uid://e8a7hg6wxuvh" path="res://scenes/objects/scoring_area.tscn" id="4_c688b"]
 [ext_resource type="PackedScene" uid="uid://b1iig46lt0acn" path="res://scenes/players/cpu.tscn" id="5_if34c"]
+[ext_resource type="PackedScene" uid="uid://bg3kxkhcxp0aa" path="res://scenes/objects/ball.tscn" id="6_fwiud"]
 
 [node name="Game" type="Node2D"]
 position = Vector2(400, 300)
 scale = Vector2(0.267333, 0.200667)
+script = ExtResource("1_rjqji")
 
 [node name="BackgroundSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_jcfli")
@@ -20,20 +24,37 @@ texture = ExtResource("2_n340q")
 metadata/_edit_lock_ = true
 
 [node name="Limits" type="Node2D" parent="."]
+
+[node name="Walls" type="Node2D" parent="Limits"]
 metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
-[node name="Wall" parent="Limits" instance=ExtResource("4_bv7m7")]
+[node name="TopWall" parent="Limits/Walls" instance=ExtResource("4_bv7m7")]
 position = Vector2(0, -1482.54)
-rotation = -1.5708
-scale = Vector2(-0.0473793, 1)
-
-[node name="Wall2" parent="Limits" instance=ExtResource("4_bv7m7")]
-position = Vector2(-3.74219, 1480.04)
 rotation = 1.5708
-scale = Vector2(-0.0473793, 1)
+scale = Vector2(0.0473793, -1)
+
+[node name="BottomWall" parent="Limits/Walls" instance=ExtResource("4_bv7m7")]
+position = Vector2(-3.74219, 1480.04)
+rotation = -1.57079
+scale = Vector2(0.0473793, -1)
+
+[node name="ScoringAreas" type="Node2D" parent="Limits"]
+
+[node name="PlayerArea" parent="Limits/ScoringAreas" instance=ExtResource("4_c688b")]
+unique_name_in_owner = true
+position = Vector2(-1488.78, 0)
+scale = Vector2(8.631, 1.529)
+is_player = true
+
+[node name="CPUArea" parent="Limits/ScoringAreas" instance=ExtResource("4_c688b")]
+unique_name_in_owner = true
+position = Vector2(1488.78, 0)
+scale = Vector2(8.631, 1.529)
 
 [node name="Players" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
 
 [node name="Player" parent="Players" instance=ExtResource("3_neypx")]
 position = Vector2(-1300, 50)
@@ -43,3 +64,10 @@ metadata/_edit_lock_ = true
 [node name="CPU" parent="Players" instance=ExtResource("5_if34c")]
 position = Vector2(1298.01, 0)
 speed = 400
+
+[node name="Ball" parent="." instance=ExtResource("6_fwiud")]
+scale = Vector2(0.102262, 0.111637)
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="Limits/ScoringAreas/PlayerArea" to="." method="_on_player_area_body_entered"]
+[connection signal="body_entered" from="Limits/ScoringAreas/CPUArea" to="." method="_on_cpu_area_body_entered"]

@@ -2,17 +2,14 @@ extends CharacterBody2D
 
 @export var speed: int
 
-func _process(_delta):
-	var direction: Vector2
+func _physics_process(delta):
+	if (Globals.ball_position.y < position.y):
+		velocity.y = -1
+	else:
+		velocity.y = 1
+	velocity *= speed
 	
-	if(Input.is_action_pressed("move_down")):
-		direction = Vector2.UP
-	if(Input.is_action_pressed("move_up")):
-		direction = Vector2.DOWN
-	
-	velocity = direction * speed
-	move_and_slide()
-
+	move_and_collide(velocity * delta)
 
 func _on_area_2d_body_entered(body):
 	if ('bounce' in body):

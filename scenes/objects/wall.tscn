@@ -8,10 +8,11 @@
 size = Vector2(1000, 2998)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_xrr1a"]
-a = Vector2(501, 1500)
-b = Vector2(501, -1498)
+a = Vector2(502, 1500)
+b = Vector2(502, -1499)
 
 [node name="Wall" type="StaticBody2D"]
+collision_mask = 3
 script = ExtResource("1_8ctjj")
 
 [node name="Net" type="Sprite2D" parent="."]

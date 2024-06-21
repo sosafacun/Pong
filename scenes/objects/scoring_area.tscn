@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://e8a7hg6wxuvh"]
+
+[ext_resource type="Script" path="res://scenes/objects/scoring_area.gd" id="1_wfs5w"]
+[ext_resource type="AudioStream" uid="uid://bjbrq1bvgcpej" path="res://assets/sound/player-score.wav" id="2_a3vu7"]
+[ext_resource type="AudioStream" uid="uid://wa5ychi57snk" path="res://assets/sound/cpu_score.wav" id="3_yuor1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mbc03"]
+size = Vector2(20, 1900)
+
+[node name="ScoringArea" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_wfs5w")
+
+[node name="ScoringCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mbc03")
+
+[node name="PlayerScore" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_a3vu7")
+
+[node name="CPUScore" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_yuor1")

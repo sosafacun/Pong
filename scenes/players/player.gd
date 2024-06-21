@@ -16,4 +16,4 @@ func _process(_delta):
 
 func _on_area_2d_body_entered(body):
 	if ('bounce' in body):
-		$Node2D/AudioStreamPlayer2D.play()
+		$CollisionShape2D/Node2D/AudioStreamPlayer2D.play()

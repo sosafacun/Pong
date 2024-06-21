@@ -1,7 +1,30 @@
-[gd_scene format=3 uid="uid://bg3kxkhcxp0aa"]
+[gd_scene load_steps=7 format=3 uid="uid://bg3kxkhcxp0aa"]
+
+[ext_resource type="Script" path="res://scenes/objects/ball.gd" id="1_76x1s"]
+[ext_resource type="Shader" path="res://assets/objects/ball.gdshader" id="1_ssn1v"]
+[ext_resource type="Texture2D" uid="uid://cngp0llgtj48i" path="res://assets/objects/view-white-crumpled-paper.jpg" id="2_1of7q"]
+[ext_resource type="Texture2D" uid="uid://mmxyjm0kg35a" path="res://assets/objects/ball.png" id="2_hg6su"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kbl4w"]
+shader = ExtResource("1_ssn1v")
+shader_parameter/image_scale = Vector2(20, 20)
+shader_parameter/image_offset = Vector2(0, 0)
+shader_parameter/min_alpha = 0.1
+shader_parameter/target_color = Color(0.0742504, 0.717632, 0, 1)
+shader_parameter/color_match_threshold = 0.8
+shader_parameter/image = ExtResource("2_1of7q")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ji830"]
+radius = 249.05
 
 [node name="Ball" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_76x1s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_kbl4w")
+texture = ExtResource("2_hg6su")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ji830")
