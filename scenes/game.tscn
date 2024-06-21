@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ce33ikihg5g1o"]
+[gd_scene load_steps=6 format=3 uid="uid://ce33ikihg5g1o"]
 
 [ext_resource type="Texture2D" uid="uid://ccga024x5aqew" path="res://assets/background.png" id="1_jcfli"]
 [ext_resource type="Texture2D" uid="uid://bj443805vkc0n" path="res://assets/net.png" id="2_n340q"]
 [ext_resource type="PackedScene" uid="uid://d16bpf0ggcabl" path="res://scenes/players/player.tscn" id="3_neypx"]
 [ext_resource type="PackedScene" uid="uid://bejvlcb5574ac" path="res://scenes/objects/wall.tscn" id="4_bv7m7"]
+[ext_resource type="PackedScene" uid="uid://b1iig46lt0acn" path="res://scenes/players/cpu.tscn" id="5_if34c"]
 
 [node name="Game" type="Node2D"]
 position = Vector2(400, 300)
@@ -23,19 +24,22 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Wall" parent="Limits" instance=ExtResource("4_bv7m7")]
-position = Vector2(0, -1480.07)
-rotation = 1.5708
+position = Vector2(0, -1482.54)
+rotation = -1.5708
 scale = Vector2(-0.0473793, 1)
-metadata/_edit_lock_ = true
 
 [node name="Wall2" parent="Limits" instance=ExtResource("4_bv7m7")]
-position = Vector2(0, 1460.13)
+position = Vector2(-3.74219, 1480.04)
 rotation = 1.5708
 scale = Vector2(-0.0473793, 1)
-metadata/_edit_lock_ = true
 
-[node name="Player" parent="." instance=ExtResource("3_neypx")]
+[node name="Players" type="Node2D" parent="."]
+
+[node name="Player" parent="Players" instance=ExtResource("3_neypx")]
 position = Vector2(-1300, 50)
-scale = Vector2(1, 1)
 speed = 400
 metadata/_edit_lock_ = true
+
+[node name="CPU" parent="Players" instance=ExtResource("5_if34c")]
+position = Vector2(1298.01, 0)
+speed = 400

@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://b1iig46lt0acn"]
+
+[ext_resource type="Script" path="res://scenes/players/cpu.gd" id="1_0qicy"]
+[ext_resource type="Shader" path="res://assets/players/cpu.gdshader" id="2_2ncb2"]
+[ext_resource type="Texture2D" uid="uid://b8q135f2ach2b" path="res://assets/players/red_player_bg.png" id="3_um0b6"]
+[ext_resource type="Texture2D" uid="uid://deguibpv1yxuq" path="res://assets/players/red_player.png" id="4_xtqbj"]
+[ext_resource type="AudioStream" uid="uid://c5rtn8s12uioh" path="res://assets/sound/player-bounce.wav" id="5_wco3g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xo5fv"]
+shader = ExtResource("2_2ncb2")
+shader_parameter/image_scale = Vector2(0.5, 4)
+shader_parameter/image_offset = Vector2(0, 0)
+shader_parameter/min_alpha = 0.1
+shader_parameter/target_color = Color(0.356619, 0, 0.0234379, 1)
+shader_parameter/color_match_threshold = 0.8
+shader_parameter/image = ExtResource("3_um0b6")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jml2f"]
+size = Vector2(76, 630)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_i0vbc"]
+a = Vector2(39, -315)
+b = Vector2(39, 315)
+
+[node name="CPU" type="CharacterBody2D"]
+rotation = 3.14159
+script = ExtResource("1_0qicy")
+
+[node name="CPUPlayer" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_xo5fv")
+scale = Vector2(0.075625, 0.209917)
+texture = ExtResource("4_xtqbj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_jml2f")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
+shape = SubResource("SegmentShape2D_i0vbc")
+debug_color = Color(0.996078, 0, 0, 0.419608)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Node2D"]
+stream = ExtResource("5_wco3g")
+
+[connection signal="body_entered" from="Node2D/Area2D" to="." method="_on_area_2d_body_entered"]

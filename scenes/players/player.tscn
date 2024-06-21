@@ -1,11 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://d16bpf0ggcabl"]
+[gd_scene load_steps=10 format=3 uid="uid://d16bpf0ggcabl"]
 
 [ext_resource type="Shader" path="res://assets/players/player.gdshader" id="1_g1usg"]
 [ext_resource type="Texture2D" uid="uid://kdw5lb21k8rn" path="res://assets/players/blue_player.png" id="1_ujgb5"]
 [ext_resource type="Script" path="res://scenes/players/player.gd" id="1_xkfn2"]
 [ext_resource type="Texture2D" uid="uid://diefjj8mkx40t" path="res://assets/players/blue_player_bg.png" id="2_1cghb"]
+[ext_resource type="AudioStream" uid="uid://c5rtn8s12uioh" path="res://assets/sound/player-bounce.wav" id="5_iy24q"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xo5fv"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ppmi"]
+shader = ExtResource("1_g1usg")
+shader_parameter/image_scale = Vector2(1, 1)
+shader_parameter/image_offset = Vector2(0, 0)
+shader_parameter/min_alpha = 0.1
+shader_parameter/target_color = Color(0, 0.0117189, 0.321431, 1)
+shader_parameter/color_match_threshold = 0.8
+shader_parameter/image = ExtResource("2_1cghb")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_omvs0"]
 shader = ExtResource("1_g1usg")
 shader_parameter/image_scale = Vector2(0.5, 4)
 shader_parameter/image_offset = Vector2(0, 0)
@@ -17,13 +27,35 @@ shader_parameter/image = ExtResource("2_1cghb")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jml2f"]
 size = Vector2(76, 630)
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_i0vbc"]
+a = Vector2(39, -315)
+b = Vector2(39, 315)
+
 [node name="Player" type="CharacterBody2D"]
+material = SubResource("ShaderMaterial_5ppmi")
 script = ExtResource("1_xkfn2")
 
 [node name="BluePlayer" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_xo5fv")
+material = SubResource("ShaderMaterial_omvs0")
 scale = Vector2(0.075625, 0.209917)
 texture = ExtResource("1_ujgb5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_jml2f")
+
+[node name="Node2D" type="Node2D" parent="CollisionShape2D"]
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="CollisionShape2D/Node2D"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D/Node2D/Area2D"]
+shape = SubResource("SegmentShape2D_i0vbc")
+debug_color = Color(0.996078, 0, 0, 0.419608)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CollisionShape2D/Node2D"]
+stream = ExtResource("5_iy24q")
+
+[connection signal="body_entered" from="CollisionShape2D/Node2D/Area2D" to="." method="_on_area_2d_body_entered"]

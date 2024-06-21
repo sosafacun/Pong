@@ -12,3 +12,8 @@ func _process(_delta):
 	
 	velocity = direction * speed
 	move_and_slide()
+
+
+func _on_area_2d_body_entered(body):
+	if ('bounce' in body):
+		$Node2D/AudioStreamPlayer2D.play()
