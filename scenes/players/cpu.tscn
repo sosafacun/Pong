@@ -15,8 +15,9 @@ shader_parameter/target_color = Color(0.356619, 0, 0.0234379, 1)
 shader_parameter/color_match_threshold = 0.8
 shader_parameter/image = ExtResource("3_um0b6")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jml2f"]
-size = Vector2(76, 630)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hcrm3"]
+radius = 38.0
+height = 630.0
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_i0vbc"]
 a = Vector2(39, -315)
@@ -32,8 +33,7 @@ scale = Vector2(0.075625, 0.209917)
 texture = ExtResource("4_xtqbj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("RectangleShape2D_jml2f")
+shape = SubResource("CapsuleShape2D_hcrm3")
 
 [node name="Node2D" type="Node2D" parent="."]
 

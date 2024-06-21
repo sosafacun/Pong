@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var start_speed: int = 250
+@export var start_speed: int
 @onready var speed: int = start_speed
 
 func _ready():

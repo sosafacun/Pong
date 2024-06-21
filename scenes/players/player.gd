@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed: int
 
-func _process(_delta):
+func _process(delta):
 	var direction: Vector2
 	
 	if(Input.is_action_pressed("move_down")):

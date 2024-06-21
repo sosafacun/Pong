@@ -3,6 +3,7 @@ extends Node2D
 func _ready():
 	%PlayerScoreLabel.text = str(Globals.player_score)
 	%CPUScoreLabel.text = str(Globals.cpu_score)
+	$Ball.set_starting_velocity()
 
 func reset_positions():
 	$Ball.position = Vector2.ZERO

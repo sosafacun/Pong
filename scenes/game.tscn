@@ -60,7 +60,7 @@ metadata/_edit_group_ = true
 
 [node name="Player" parent="Players" instance=ExtResource("3_neypx")]
 unique_name_in_owner = true
-position = Vector2(-1300, 50)
+position = Vector2(-1300, 0)
 speed = 400
 metadata/_edit_lock_ = true
 
@@ -71,6 +71,7 @@ speed = 400
 
 [node name="Ball" parent="." instance=ExtResource("6_fwiud")]
 scale = Vector2(0.102262, 0.111637)
+start_speed = 350
 metadata/_edit_lock_ = true
 
 [node name="UI" type="Control" parent="."]
