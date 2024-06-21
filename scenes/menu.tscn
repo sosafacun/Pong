@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://75fldum6gukm"]
+
+[ext_resource type="FontFile" uid="uid://cwtkxlwqy8y0h" path="res://assets/fonts/Handwritting-Regular.ttf" id="1_g0upq"]
+[ext_resource type="Texture2D" uid="uid://bs003egrkpkpm" path="res://assets/menu.png" id="1_pjoq0"]
+[ext_resource type="Script" path="res://scenes/menu.gd" id="1_x3bov"]
+
+[sub_resource type="Theme" id="Theme_x48ls"]
+default_font = ExtResource("1_g0upq")
+default_font_size = 69
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_x48ls")
+script = ExtResource("1_x3bov")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(400, 300)
+texture = ExtResource("1_pjoq0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.676
+anchor_bottom = 0.602
+offset_left = 101.0
+offset_top = 106.0
+offset_right = 482.2
+offset_bottom = 217.8
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "W  Go Up
+S  Go Down
+
+Space to start
+
+Esc to return 
+         to main menu"
+
+[connection signal="start" from="." to="." method="_on_start"]

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var speed: int
+const IS_PADDLE: bool = true
 
 func _process(delta):
 	var direction: Vector2

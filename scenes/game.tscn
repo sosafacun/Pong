@@ -68,10 +68,11 @@ metadata/_edit_lock_ = true
 unique_name_in_owner = true
 position = Vector2(1298.01, 0)
 speed = 400
+block_variability = 0.45
 
 [node name="Ball" parent="." instance=ExtResource("6_fwiud")]
 scale = Vector2(0.102262, 0.111637)
-start_speed = 350
+start_speed = 150
 metadata/_edit_lock_ = true
 
 [node name="UI" type="Control" parent="."]
@@ -109,5 +110,6 @@ offset_right = -0.0188293
 offset_bottom = -0.0098877
 theme = ExtResource("10_oq6aj")
 
+[connection signal="return_menu" from="." to="." method="_on_return_menu"]
 [connection signal="updated_scores" from="Limits/ScoringAreas/LeftArea" to="." method="_on_left_area_updated_scores"]
 [connection signal="updated_scores" from="Limits/ScoringAreas/RightArea" to="." method="_on_right_area_updated_scores"]

@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var start_speed: int
 @onready var speed: int = start_speed
+const ACCELERATION: float = 1.30
 
 func _ready():
 	set_starting_velocity()
@@ -14,6 +15,9 @@ func bounce(delta):
 	Globals.ball_position = position
 	if (collision_info):
 		velocity = velocity.bounce(collision_info.get_normal())
+		if('IS_PADDLE' in collision_info.get_collider()):
+			speed += ACCELERATION
+			velocity *= ACCELERATION
 
 func set_starting_velocity():
 	if randi() % 2 == 0:
