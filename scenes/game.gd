@@ -1,17 +1,19 @@
 extends Node2D
 
+func _ready():
+	%PlayerScoreLabel.text = str(Globals.player_score)
+	%CPUScoreLabel.text = str(Globals.cpu_score)
 
-func _on_player_area_body_entered(body):
-	if ('bounce' in body):
-		%PlayerArea.play_sound()
-		reset_ball()
-
-
-func _on_cpu_area_body_entered(body):
-	if ('bounce' in body):
-		%CPUArea.play_sound()
-		reset_ball()
-
-func reset_ball():
+func reset_positions():
 	$Ball.position = Vector2.ZERO
+	$Ball.set_starting_velocity()
 	Globals.ball_position = $Ball.position
+	%Player.position.y = 0
+	%CPU.position.y = 0
+
+
+func _on_left_area_updated_scores():
+	reset_positions()
+
+func _on_right_area_updated_scores():
+	reset_positions()

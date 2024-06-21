@@ -3,10 +3,13 @@ extends CharacterBody2D
 @export var speed: int
 
 func _physics_process(delta):
+	if(abs(Globals.ball_position.y - position.y) < 50):
+		return
+	
 	if (Globals.ball_position.y < position.y):
-		velocity.y = -1
+		velocity.y = -.40
 	else:
-		velocity.y = 1
+		velocity.y = .40
 	velocity *= speed
 	
 	move_and_collide(velocity * delta)

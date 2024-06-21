@@ -16,6 +16,10 @@ shape = SubResource("RectangleShape2D_mbc03")
 
 [node name="PlayerScore" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_a3vu7")
+volume_db = -10.0
 
 [node name="CPUScore" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_yuor1")
+volume_db = -10.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
