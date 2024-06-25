@@ -17,6 +17,7 @@ func reset_positions():
 	Globals.ball_position = $Ball.position
 	%Player.position.y = 0
 	%CPU.position.y = 0
+	%CPU.block_variability = 0.45
 
 
 func _on_left_area_updated_scores():

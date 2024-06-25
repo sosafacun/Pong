@@ -2,7 +2,7 @@ extends Control
 
 signal start
 
-func _process(delta):
+func _process(_delta):
 	if(Input.is_action_pressed("start")):
 		start.emit()
 	

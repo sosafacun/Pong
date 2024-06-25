@@ -22,5 +22,5 @@ func increment(audio: AudioStreamPlayer2D):
 	tween.tween_property(audio, "volume_db", 0, 0.5)
 
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	play_sound()

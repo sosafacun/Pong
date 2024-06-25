@@ -3,7 +3,9 @@ extends CharacterBody2D
 @export var speed: int
 const IS_PADDLE: bool = true
 
-func _process(delta):
+@onready var collision_height = $CollisionShape2D.shape.height
+
+func _process(_delta):
 	var direction: Vector2
 	
 	if(Input.is_action_pressed("move_down")):
@@ -13,6 +15,7 @@ func _process(delta):
 	
 	velocity = direction * speed
 	move_and_slide()
+	Globals.player_position = position
 
 
 func _on_area_2d_body_entered(body):

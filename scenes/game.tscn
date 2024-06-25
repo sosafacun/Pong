@@ -67,12 +67,12 @@ metadata/_edit_lock_ = true
 [node name="CPU" parent="Players" instance=ExtResource("5_if34c")]
 unique_name_in_owner = true
 position = Vector2(1298.01, 0)
-speed = 400
+speed = 375
 block_variability = 0.45
 
 [node name="Ball" parent="." instance=ExtResource("6_fwiud")]
 scale = Vector2(0.102262, 0.111637)
-start_speed = 150
+start_speed = 15.0
 metadata/_edit_lock_ = true
 
 [node name="UI" type="Control" parent="."]
